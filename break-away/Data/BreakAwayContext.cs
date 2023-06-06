@@ -12,10 +12,12 @@ public class BreakAwayContext: DbContext
     
     public DbSet<Destination> Destinations { get; set; }
     public DbSet<Lodging> Lodgings { get; set; }
+    public DbSet<Trip> Trips { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new DestinationConfiguration());
         modelBuilder.ApplyConfiguration(new LodgingConfiguration());
+        modelBuilder.ApplyConfiguration(new TripConfiguration());
     }
 }

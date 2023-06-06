@@ -32,4 +32,36 @@ $ dotnet ef database update
 ### 설정에 따른 규칙 재정의하기
 > 우리가 제공하는 모든 구성정보에는 엔티티 프레임워크가 해당 데이터를 실행할 때 사용하는 모델의 일부가 포함된다. 이 정보는 데이터베이스 스키마에 영향을 줄 뿐만 
 > 아니라 DbContext에 내장된 유효성 검사 기능에도 이용된다.
+---
+## 코드 퍼스트로 프로퍼티 어트리뷰트 작업하기
+### 길이
+.|.
+---|---
+규칙|max (데이터베이스에 의해 지정된 타입)
+Data Annotations|MinLength(nn)<br />MaxLength(nn)<br />Stringlength(nn)
+Fluent API|Entity<T>.Property(t => t.Propert).HasMaxLength(nn)
 
+### 데이터 타입
+.|.
+---|---
+규칙|기본 칼럼 데이터 형식은 사용하고 있는 데이터베이스 공급자에 의해 결정된다. 다음은 SQL 서버의 몇 가지 기본 데이터 타입이다.<br />String: nvarchar(max)<br />Integer: int<br />Byte Array: varbinary(max)<br />Boolean: bit
+Data Annotations|Column(TypeName="xxx")
+Fluent API|Entity<T>.Property(t => t.Propert).HasColumnType("xxx")
+
+### NULL 허용 및 Required 구성
+.|.
+---|---
+규칙|키 프로퍼티: 데이터베이스에서 null이 아닌 타입<br />참조 타입(String, arrays): 데이터베이스에서 null이 될 수 있는 타입<br />값 타입(모든 숫자 타입, DateTime, bool, char): 데이터베이스에서 null이 아닌 타입<br />Nullable<T> Value Types: 데이터베이스에서 null이 될 수 있는 타입
+Data Annotations|Required
+Fluent API|Entity<T>.Property(t => t.PropertyName).IsRequired()
+
+### 매핑 키
+.|.
+---|---
+규칙|Id로 지정된 프로퍼티<br />[TypeName] + Id로 지정된 프로퍼티
+Data Annotations|Key
+Fluent API|Entity<T>.HasKey(t => t.PropertyName)
+
+Entity Framework는 모든 엔티티가 키를 가질 것을 요구한다. 이 키는 개별 개체를 추적하는 컨텍스트에서 사용된다. 키는 데이터베이스에 의해 대체적으로 고유하게 생성된다.
+모든 타입이 기본 키 프로퍼티로 사용될 수 있다 해도 가장 일반적으로 데이터베이스의 기본 키로 사용하는 타입은 int또는 GUID이다.<br />
+`builder.Property(t => t.Id).ValueGeneratedNever();`설정을 추가하면 데이터베이스에서 기본 키를 생성하지 않는다.

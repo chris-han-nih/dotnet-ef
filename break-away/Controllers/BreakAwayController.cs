@@ -34,4 +34,12 @@ public class BreakAwayController: ControllerBase
         _context.SaveChanges();
         return Ok(destination);
     }
+    
+    [HttpPost("trips")]
+    public IActionResult CreateTrip([FromBody] Trip trip)
+    {
+        _context.Trips.Add(trip);
+        _context.SaveChanges();
+        return Ok(trip);
+    }
 }
