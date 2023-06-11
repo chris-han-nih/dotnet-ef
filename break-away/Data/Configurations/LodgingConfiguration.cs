@@ -11,5 +11,7 @@ public class LodgingConfiguration: IEntityTypeConfiguration<Lodging>
         builder.Property(l => l.Name)
                .IsRequired()
                .HasMaxLength(200);
+        builder.Property(l => l.MilesFromNearestAirport)
+               .HasPrecision(18, 3);
     }
 }

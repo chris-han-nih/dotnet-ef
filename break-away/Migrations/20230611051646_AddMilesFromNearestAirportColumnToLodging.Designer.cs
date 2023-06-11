@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using break_away.Data;
 
@@ -11,9 +12,11 @@ using break_away.Data;
 namespace break_away.Migrations
 {
     [DbContext(typeof(BreakAwayContext))]
-    partial class BreakAwayContextModelSnapshot : ModelSnapshot
+    [Migration("20230611051646_AddMilesFromNearestAirportColumnToLodging")]
+    partial class AddMilesFromNearestAirportColumnToLodging
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace break_away.Migrations
                         .HasColumnType("bit");
 
                     b.Property<decimal>("MilesFromNearestAirport")
-                        .HasColumnType("decimal(8,3)");
+                        .HasColumnType("decimal(8,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()

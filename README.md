@@ -65,3 +65,17 @@ Fluent API|Entity<T>.HasKey(t => t.PropertyName)
 Entity Framework는 모든 엔티티가 키를 가질 것을 요구한다. 이 키는 개별 개체를 추적하는 컨텍스트에서 사용된다. 키는 데이터베이스에 의해 대체적으로 고유하게 생성된다.
 모든 타입이 기본 키 프로퍼티로 사용될 수 있다 해도 가장 일반적으로 데이터베이스의 기본 키로 사용하는 타입은 int또는 GUID이다.<br />
 `builder.Property(t => t.Id).ValueGeneratedNever();`설정을 추가하면 데이터베이스에서 기본 키를 생성하지 않는다.
+
+### 낙관적 동시성에 대해 TimeStamp와 RowVersion 필드 구성하기
+.|.
+---|---
+규칙|없음
+Data Annotations|Timestamp
+Fluent API|Entity<T>.Property(t => t.PropertyName).IsRowVersion()
+
+### 십진법의 정밀과 스케일에 영향 주기
+.|.
+---|---
+규칙|Decimal은 18, 2이다
+Data Annotations|[Column(TypeName="decimal(8,2)")]
+Fluent API|Entity<T>.Property(t => t.PropertyName).HasPrecision(18, 2)
