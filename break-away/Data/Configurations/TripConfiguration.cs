@@ -9,5 +9,7 @@ public class TripConfiguration: IEntityTypeConfiguration<Trip>
     public void Configure(EntityTypeBuilder<Trip> builder)
     {
         builder.Property(t => t.Id).ValueGeneratedOnAdd();
+        builder.Property(t => t.RowVersion)
+               .IsRowVersion();
     }
 }
