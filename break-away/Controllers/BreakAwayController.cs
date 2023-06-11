@@ -46,7 +46,7 @@ public class BreakAwayController: ControllerBase
     [HttpPost("people")]
     public IActionResult CreatePerson([FromBody] Person person)
     {
-        _context.Persons.Add(person);
+        _context.People.Add(person);
         _context.SaveChanges();
         return Ok(person);
     }
