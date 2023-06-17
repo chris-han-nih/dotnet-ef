@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using break_away.Data;
 
@@ -11,9 +12,11 @@ using break_away.Data;
 namespace break_away.Migrations
 {
     [DbContext(typeof(BreakAwayContext))]
-    partial class BreakAwayContextModelSnapshot : ModelSnapshot
+    [Migration("20230617013949_AddAddressEntity")]
+    partial class AddAddressEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,40 +146,6 @@ namespace break_away.Migrations
                         .IsRequired();
 
                     b.Navigation("Destination");
-                });
-
-            modelBuilder.Entity("break_away.Models.Person", b =>
-                {
-                    b.OwnsOne("break_away.Models.Address", "Address", b1 =>
-                        {
-                            b1.Property<int>("PersonSocialSecurityNumber")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("City")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("State")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("StreetAddress")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("ZipCode")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("PersonSocialSecurityNumber");
-
-                            b1.ToTable("People");
-
-                            b1.WithOwner()
-                                .HasForeignKey("PersonSocialSecurityNumber");
-                        });
-
-                    b.Navigation("Address");
                 });
 
             modelBuilder.Entity("break_away.Models.Destination", b =>

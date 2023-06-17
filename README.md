@@ -79,3 +79,16 @@ Fluent API|Entity<T>.Property(t => t.PropertyName).IsRowVersion()
 규칙|Decimal은 18, 2이다
 Data Annotations|[Column(TypeName="decimal(8,2)")]
 Fluent API|Entity<T>.Property(t => t.PropertyName).HasPrecision(18, 2)
+
+### 코드 퍼스트에서 복합 타입으로 작업하기
+.|.
+---|---
+규칙|없음
+Data Annotations|ComplexType
+Fluent API|Entity<T>.OwnsOne(t => t.PropertyName)
+
+복합 타입은 **갑 타입**으로 알려져 있으며 다른 클래스에 부가적으로 프로퍼티를 추가하는 데 사용할 수 있다. 복합 타입을
+엔티티 타입과 구별한다는 의미는 복합 타입에게 자신의 키가 없다는 것을 말한다. 이 방식은 변경 추적 및 지속을 위한
+'호스트' 타입에 의존한다.
+키 프로퍼티가 없고 하나 이상의 타입으로 매핑되는 프로퍼티를 사용하는 타입은 코드 퍼스트의 규칙에 의해 복합 타입으로 인식될 것이다.
+코드 퍼스트는 복합 타입의 프로퍼티가 호스트 타입으로 매핑하는 테이블에 포함된다고 추정할 것이다.

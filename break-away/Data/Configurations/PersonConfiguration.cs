@@ -11,7 +11,6 @@ public class PersonConfiguration: IEntityTypeConfiguration<Person>
         builder.HasKey(p => p.SocialSecurityNumber);
         builder.Property(p => p.SocialSecurityNumber)
                .ValueGeneratedNever();
-        builder.Property(p => p.RowVersion)
-               .IsRowVersion();
+        builder.OwnsOne(p => p.Address);
     }
 }
