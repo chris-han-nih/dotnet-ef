@@ -11,6 +11,13 @@ public class PersonConfiguration: IEntityTypeConfiguration<Person>
         builder.HasKey(p => p.SocialSecurityNumber);
         builder.Property(p => p.SocialSecurityNumber)
                .ValueGeneratedNever();
-        builder.OwnsOne(p => p.Address);
+        builder.OwnsOne(p => p.Address,
+                        ad =>
+                        {
+                            ad.Property(a => a.City)
+                              .HasMaxLength(100);
+                            ad.Property(a => a.ZipCode)
+                              .HasMaxLength(20);
+                        });
     }
 }
