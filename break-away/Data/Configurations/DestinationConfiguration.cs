@@ -13,5 +13,6 @@ public class DestinationConfiguration: IEntityTypeConfiguration<Destination>
                .HasMaxLength(200);
         builder.Property(d => d.Description)
                .HasMaxLength(500);
+        builder.HasMany(d => d.Lodgings);
     }
 }
