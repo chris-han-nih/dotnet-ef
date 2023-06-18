@@ -14,6 +14,7 @@ public class BreakAwayContext: DbContext
     public DbSet<Lodging> Lodgings { get; set; }
     public DbSet<Trip> Trips { get; set; }
     public DbSet<Person> People { get; set; }
+    public DbSet<InternetSpecial> InternetSpecials { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
